@@ -95,27 +95,14 @@ public final class Layers extends ShapeCanvas {
     BrickWall brickwall, brickwall2;
     
     void addBackground() {
-        Shape background = new Rectangle(0, 0, Greeting.Main.getWidth(), Greeting.Main.getHeight() / 2, null, new Color(0x63D2FF)) {
-            int[] delta = {0, 0, 1};
-            @Override
-            public void animate() {
-                int[] curr = {
-                    fill.getRed(), fill.getGreen(), fill.getBlue()
-                };
-                for (int i = 0; i < curr.length; ++i) {
-                    int test = curr[i] + delta[i];
-                    if (test < 0 || test > 0xFF)
-                        delta[i] *= -1;
-                    curr[i] += delta[i];
-                }
-                fill = new Color((curr[0] << 16) | (curr[1] << 8) | (curr[2]));
-            }
-        };
+        Rectangle ceiling = new Rectangle(0, 0, Greeting.Main.getWidth(), Greeting.Main.getHeight() / 2, null, new Color(0x006000));
+		Rectangle floor = new Rectangle(0, ceiling.height, ceiling.width, ceiling.height, Color.BLACK, new Color(0xFFFFF0));
         
         brickwall = new BrickWall(0, treecenter - 10, 0, 350, 30, 300, 20, 5, Color.WHITE, new Color(230, 118, 70));
         brickwall2 = new BrickWall(brickwall.right, Greeting.Main.getWidth(), brickwall.rightTop, brickwall.rightBottom, 10, 325, 20, 6, brickwall.outline, brickwall.fill);
         // Brick b = new Brick("")
-        // addShape(background);
+        addShape(ceiling);
+		addShape(floor);
         addShape(brickwall);
         addShape(brickwall2);
     }
