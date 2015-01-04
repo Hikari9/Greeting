@@ -61,7 +61,7 @@ public class Greeting extends JFrame {
                     }
                     else {
                         for (int i = 0, I = timers.size(); i < I; ++i)
-                            timers.get(i).start();
+                            timers.get(i).stop();
                         button.setText("Animate");
                     }
                 }

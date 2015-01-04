@@ -290,6 +290,7 @@ public class Snowman implements Shape {
         
         @Override
         public void run() {
+            if (!Greeting.Main.animateButton.isSelected()) return;
             if (count < 4) {
                 shakeDirection = ((count & 1) == 0 ? -1 : 1);
                 Greeting.Main.canvas.addShape(new MusicalNote(center().x + shakeDirection * shakeOffset * 6, getY()));
