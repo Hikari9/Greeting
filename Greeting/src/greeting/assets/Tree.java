@@ -38,8 +38,7 @@ public final class Tree implements Shape {
         
         Flake[] f = new Flake[11];
         for (int i = 0; i < f.length; ++i) {
-            f[i] = new FlakeWithLight(treeCenter, 50 + 10 * i - ((i & 1) == 1 ? 5 : 0), 80 + 10 * i, 220, 100, 5 + i / 2, 20, Color.BLACK, (i & 1) == 0 ? Color.GREEN : Color.DARK_GRAY) {
-                
+            f[i] = new Flake(treeCenter, 50 + 10 * i - ((i & 1) == 1 ? 5 : 0), 80 + 10 * i, 220, 100, 5 + i / 2, 20, Color.BLACK, (i & 1) == 0 ? Color.GREEN : Color.DARK_GRAY) {
                 int flickers = 0;
                 @Override
                 public void animate() {

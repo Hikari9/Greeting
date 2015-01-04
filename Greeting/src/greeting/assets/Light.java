@@ -46,4 +46,14 @@ public class Light extends Circle {
         fill = colors.get(flickers);
     }
     
+    public static Light BASIC;
+    static {
+        BASIC = new Light(-5, 0, 10);
+        BASIC.addColor(Color.RED);
+        BASIC.addColor(Color.BLUE);
+        BASIC.addColor(Color.GREEN);
+        BASIC.addColor(Color.YELLOW);
+    }
+
+    
 }

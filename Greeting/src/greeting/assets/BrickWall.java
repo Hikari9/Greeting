@@ -79,11 +79,7 @@ public class BrickWall implements Shape {
     
     public Lighting randomLighting() {
         Lighting L = new Lighting(Greeting.Main.FPS);
-        Light light = new Light(-5, 0, 10);
-        light.addColor(Color.RED);
-        light.addColor(Color.BLUE);
-        light.addColor(Color.GREEN);
-        light.addColor(Color.YELLOW);
+        Light light = Light.BASIC;
         for (int i = 1; i < rows; ++i) {
             int randomColumn = (int) (Math.random() * columns);
             L.addLight(new Light(light, getPoint(i, randomColumn).x, getPoint(i, randomColumn).y));
