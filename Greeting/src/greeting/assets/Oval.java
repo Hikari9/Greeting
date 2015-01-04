@@ -38,6 +38,12 @@ public class Oval implements Shape {
         return new Point((int) Math.round(x + width / 2.0), (int) Math.round(y + height / 2.0));
     }
     
+    public static boolean pointInOval(Point p, Oval o) {
+        double dx = p.x - o.center().x;
+        double dy = p.y - o.center().y;
+        return (4 * (dx * dx / (o.width * o.width) + dy * dy / (o.height * o.height)) <= 1.0);
+    }
+    
 
     @Override
     public void animate() {

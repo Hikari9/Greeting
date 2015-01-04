@@ -57,7 +57,7 @@ public class Snowman implements Shape {
     
     public float mouseOffsetX() {
         try {
-            if (shakeDirection != 0)
+            if (isShaking())
                 return 100 * shakeDirection;
             return (float) (Greeting.Main.getMousePosition().getX() - center().getX());
         }
@@ -112,7 +112,7 @@ public class Snowman implements Shape {
     }
     
     public int getEyeY() {
-        float ey = getY() + EYE_HEIGHT_RELATIVE_POSITION * scale + (calls >= OPEN_BLINK || shakeDirection != 0 ? getEyeHeight() : 0.0f);
+        float ey = getY() + EYE_HEIGHT_RELATIVE_POSITION * scale + (isBlinking() ? getEyeHeight() : 0.0f);
         try {
             float dy = (float) Math.sin(getMouseAngle()) * MOUSE_LOOK_SCALE;
             if (dy > 0) dy *= 2;
@@ -130,7 +130,7 @@ public class Snowman implements Shape {
     }
     
     public int getEyeHeight() {
-        return (int) Math.round(DEFAULT_EYE_HEIGHT * scale * (calls >= OPEN_BLINK || shakeDirection != 0 ? 0.5 : 1.0));
+        return (int) Math.round(DEFAULT_EYE_HEIGHT * scale * (isBlinking() ? 0.5 : 1.0));
     }
     
     public Oval getFace() {
@@ -216,8 +216,10 @@ public class Snowman implements Shape {
         if (calls > OPEN_BLINK + CLOSE_BLINK)
             calls = 0;
         
+        
         Oval topBody = getTopBody();
         Oval bottomBody = getBottomBody();
+        
         
         Oval face = getFace();
         Oval leftEye = getLeftEye();
@@ -227,7 +229,7 @@ public class Snowman implements Shape {
         Polygon hatBody = getHatBody();
         Polygon hatBase = getHatBase();
         Circle hatBall = getHatBall();
-        
+                
         topBody.draw(g);
         bottomBody.draw(g);
         
@@ -257,10 +259,17 @@ public class Snowman implements Shape {
         double deltaTime = ntime - time;
         double need = this.mouseOffsetX();
         double addend = need * Math.min(1, deltaTime * speed);
-        if (shakeDirection == 0) this.x += addend;
+        if (!isShaking()) this.x += addend;
         time = ntime;
     }
     
+    public boolean isShaking() {
+        return shakeDirection != 0;
+    }
+    
+    public boolean isBlinking() {
+        return calls >= OPEN_BLINK || isShaking();
+    }
     
     public void shake() {
         Timer timer = new Timer();
@@ -275,6 +284,7 @@ public class Snowman implements Shape {
         public void run() {
             if (count < 4) {
                 shakeDirection = ((count & 1) == 0 ? -1 : 1);
+                Greeting.Main.canvas.addShape(new MusicalNote(center().x + shakeDirection * shakeOffset * 6, getY()));
                 count++;
             }
             else {

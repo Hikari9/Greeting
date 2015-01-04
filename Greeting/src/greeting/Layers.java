@@ -13,14 +13,14 @@ import java.util.logging.Logger;
 import javax.swing.Timer;
 
 public final class Layers extends ShapeCanvas {
-    
-    // initializer here
-    
+        
     int treecenter = 210;
     
     public Layers() {
         addBackground();
         addTree();
+        
+        addMerryChristmas();
         addSnowman();
         addSnowball();
         // addFallingPresents();
@@ -28,22 +28,21 @@ public final class Layers extends ShapeCanvas {
     
     void addSnowman() {
         final Snowman snowman = new Snowman(0, 100, 0.7f);
-        final StringShape merrychristmas = new StringShape("Click me!", 0, 0, 16) {
+        final StringShape clickme = new StringShape("Click me!", 0, 0, 16) {
             @Override
             public void animate() {
                 this.x = snowman.getX() + 2;
                 this.y = snowman.getY() + 150 + (int) Math.round(5 * Math.sin(System.currentTimeMillis() / 400.0));
             }
         };
+        
         MouseListener ml = new MouseListener() {
 
             @Override
             public void mouseClicked(MouseEvent e) {
-                Point mouse = (e.getPoint());
-                Oval body = snowman.getBottomBody();
-                double dx = mouse.x - body.center().x;
-                double dy = mouse.y - body.center().y;
-                if (4 * (dx * dx / (body.width * body.width) + dy * dy / (body.height * body.height)) <= 1.0)
+                if (snowman.isShaking()) return;
+                Point mouse = e.getPoint();
+                if (Oval.pointInOval(mouse, snowman.getBottomBody()) || Oval.pointInOval(mouse, snowman.getTopBody()) || Oval.pointInOval(mouse, snowman.getFace()))
                     snowman.shake();
             }
 
@@ -65,8 +64,24 @@ public final class Layers extends ShapeCanvas {
             
         };
         this.addMouseListener(ml);
+        
+        
+        
         addShape(snowman);
-        addShape(merrychristmas);
+        addShape(clickme);
+    }
+    
+    void addMerryChristmas() {
+        
+        final int padding = 20;
+        final StringShape merry = new StringShape("Merry Christmas ^_^ (fr Rico)", 310, 360, 19) {
+            @Override
+            public void animate() {
+            }
+        };
+        
+        addShape(merry);
+        
     }
     
     BrickWall brickwall, brickwall2;

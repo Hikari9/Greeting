@@ -21,10 +21,6 @@ public class ShapeCanvas extends JComponent {
         shapes.add(s);
         repaint();
     }
-    
-    public void removeShape(Shape s) {
-        shapes.remove(s);
-    }
 
     public List<Shape> getShapes() {
         return shapes;
@@ -34,18 +30,25 @@ public class ShapeCanvas extends JComponent {
     
     @Override
     public void paint(Graphics g) {
-        for (Shape s : shapes) {
-            s.draw(g);
-        }
+        // for (Shape s : shapes)
+        //    s.draw(g);
+        
+        // avoid concurrent exception thingy
+        for (int i = 0, I = shapes.size(); i < I; ++i)
+            shapes.get(i).draw(g);
     }
 
     // animation methods (updates per frame)
 	
     public void animateAll() {
-        for (Shape s : shapes) {
-            s.animate();
-        }
-            repaint();
+        // for (Shape s : shapes)
+        //    s.animate();
+        
+        // avoid concurrent exception thingy
+        for (int i = 0, I = shapes.size(); i < I; ++i)
+            shapes.get(i).animate();
+        
+        repaint();
     }
 	
 }
