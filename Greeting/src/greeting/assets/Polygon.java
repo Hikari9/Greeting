@@ -21,13 +21,7 @@ import java.util.List;
  * @author Rico
  */
 public class Polygon implements Shape {
-    
-    public static void main(String[] args) throws IOException {
-        Polygon p = Polygon.readFromFile("SantaHatBodyRaw.txt");
-        p.translate(5, 0);
-        Polygon.printToFile(p, "SantaHatBodyRaw.txt");
-    }
-        
+            
     java.awt.Polygon polygon = new java.awt.Polygon();
     public Color outline = Color.BLACK, fill = null;
     
@@ -174,6 +168,7 @@ public class Polygon implements Shape {
     public static void printToFile(Polygon p, String filename) throws IOException {
         String path = System.getProperties().getProperty("java.class.path");
         PrintWriter pw = new PrintWriter(new FileWriter(path + "/" + filename));
+        p.normalize();
         for (int i = 0; i < p.size(); ++i) {
             pw.println(p.getX(i) + " " + p.getY(i));
         }

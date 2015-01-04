@@ -161,7 +161,7 @@ public class Snowman implements Shape {
     public Polygon getHatBase() {
         try {
             if (originalHatBase == null)
-                originalHatBase = Polygon.readFromFile("SantaHatBaseRaw.txt");
+                originalHatBase = Polygon.readFromFile("greeting/assets/SantaHatBaseRaw.txt");
             Polygon p = new Polygon(originalHatBase);
             p.outline = outline;
             p.fill = Color.WHITE;
@@ -190,7 +190,7 @@ public class Snowman implements Shape {
     public Polygon getHatBody() {
         try {
             if (originalHatBody == null)
-                originalHatBody = Polygon.readFromFile("SantaHatBodyRaw.txt");
+                originalHatBody = Polygon.readFromFile("greeting/assets/SantaHatBodyRaw.txt");
             Polygon p = new Polygon(originalHatBody);
             p.outline = outline;
             p.fill = Color.RED;
