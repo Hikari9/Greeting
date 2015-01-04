@@ -2,6 +2,10 @@ package greeting.assets;
 
 import greeting.*;
 import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.Timer;
 
 public class Snowball extends Circle {
     
@@ -18,10 +22,18 @@ public class Snowball extends Circle {
     }
     
     @Override
+    public void draw(Graphics g) {
+        if (fill != null)
+            super.draw(g);
+    }
+    
+    @Override
     public void animate() {
-        super.animate();
-        changeGradient();
-        fall();
+        if (fill != null) {
+            super.animate();
+            changeGradient();
+            fall();
+        }
     }
     
     protected void changeGradient() {
@@ -39,9 +51,26 @@ public class Snowball extends Circle {
     protected static int FALL_PIXELS_PER_FRAME = 3;
     
     protected void fall() {
-        if (this.y < Greeting.Main.getWidth()) {
+        if (this.y < Greeting.Main.getWidth()) 
             this.y += FALL_PIXELS_PER_FRAME;
-        }
+        
+        else
+            vanish(1000);
+    }
+    
+    public void vanish(int milliseconds) {
+        final Shape thisShape = this;
+        Timer timer = new Timer(milliseconds,
+                new ActionListener() {
+
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        // Greeting.Main.canvas.removeShape(thisShape);
+                        fill = null;
+                    }
+                });
+        timer.setRepeats(false);
+        timer.start();
     }
     
 }

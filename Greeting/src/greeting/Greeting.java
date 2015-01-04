@@ -17,6 +17,7 @@ import javax.swing.*;
 public class Greeting extends JFrame {
     public static Greeting Main = null;
     public int FPS;
+    public ShapeCanvas canvas;
     public static void main(String[] args) {
         new Greeting(600, 400, 24).setVisible(true);
     }
@@ -28,7 +29,7 @@ public class Greeting extends JFrame {
         this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-        final ShapeCanvas canvas = new Layers();
+        canvas = new Layers();
         
         new Timer(1000 / FPS, new ActionListener() {
             @Override

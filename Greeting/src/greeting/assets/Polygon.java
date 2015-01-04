@@ -17,6 +17,12 @@ import java.util.List;
  * @author Rico
  */
 public class Polygon implements Shape {
+    
+    public static void main(String[] args) throws IOException {
+        Polygon p = Polygon.readFromFile("SantaHatBodyRaw.txt");
+        p.translate(5, 0);
+        Polygon.printToFile(p, "SantaHatBodyRaw.txt");
+    }
         
     java.awt.Polygon polygon = new java.awt.Polygon();
     public Color outline = Color.BLACK, fill = null;

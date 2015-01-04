@@ -32,11 +32,23 @@ public class Light extends Circle {
         colors.add(color);
     }
     
-    public static double GLOW_ALPHA = 0.5;
-    public static double GLOW_SIZE = 1.1;
+    public double GLOW_ALPHA = 0.2;
+    public double GLOW_SIZE = 5.0;
+    
+    public Circle getGlow() {
+        if (fill == null) fill = colors.get(flickers);
+        return new Circle(
+                (int) Math.round(center().x - GLOW_SIZE * radius()),
+                (int) Math.round(center().y - GLOW_SIZE * radius()),
+                (int) Math.round(GLOW_SIZE * diameter()),
+                null,
+                new Color(fill.getRed(), fill.getGreen(), fill.getBlue(), (int) Math.round(GLOW_ALPHA * fill.getAlpha()))
+        );
+    }
     
     @Override
     public void draw(Graphics g) {
+        getGlow().draw(g);
         super.draw(g);
     }
     
