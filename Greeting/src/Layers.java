@@ -47,6 +47,7 @@ public final class Layers extends ShapeCanvas {
 
             @Override
             public void mouseClicked(MouseEvent e) {
+                if (!Greeting.Main.animateButton.isSelected()) return;
                 if (snowman.isShaking()) return;
                 Point mouse = e.getPoint();
                 if (Oval.pointInOval(mouse, snowman.getBottomBody()) || Oval.pointInOval(mouse, snowman.getTopBody()) || Oval.pointInOval(mouse, snowman.getFace()))
@@ -124,11 +125,11 @@ public final class Layers extends ShapeCanvas {
     }
     
     void addFallingPresents() {
-        new Timer(3000, new PresentRandomizer()).start();
+        Greeting.Main.addTimer(new Timer(3000, new PresentRandomizer()));
     }
     
     void addSnowball() {
-        new Timer(50, new SnowballRandomizer()).start();
+        Greeting.Main.addTimer(new Timer(50, new SnowballRandomizer()));
     }
     
     
