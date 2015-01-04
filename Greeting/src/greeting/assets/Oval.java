@@ -2,6 +2,7 @@ package greeting.assets;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Point;
 
 public class Oval implements Shape {
     
@@ -32,6 +33,11 @@ public class Oval implements Shape {
             g.drawOval(x, y, width, height);
         }
     }
+    
+    public Point center() {
+        return new Point((int) Math.round(x + width / 2.0), (int) Math.round(y + height / 2.0));
+    }
+    
 
     @Override
     public void animate() {

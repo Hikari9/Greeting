@@ -1,6 +1,7 @@
 package greeting.assets;
 
 import java.awt.Color;
+import java.awt.Point;
 
 public class Circle extends Oval {
     
@@ -20,6 +21,7 @@ public class Circle extends Oval {
     public double radius() {
         return diameter() / 2.0;
     }
+    
         
     @Override
     public void animate() {

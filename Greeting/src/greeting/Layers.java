@@ -3,6 +3,11 @@ package greeting;
 import greeting.assets.*;
 import greeting.assets.Baymax;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.Timer;
 
 public final class Layers extends ShapeCanvas {
     
@@ -14,6 +19,7 @@ public final class Layers extends ShapeCanvas {
         addBackground();
         addTree();
         addBaymax();
+        addSnowball();
     }
     
     void addBaymax() {
@@ -33,6 +39,8 @@ public final class Layers extends ShapeCanvas {
         addShape(baymax);
     }
     
+    BrickWall brickwall, brickwall2;
+    
     void addBackground() {
         Shape background = new Rectangle(0, 0, Greeting.Main.getWidth(), Greeting.Main.getHeight() / 2, null, new Color(0x63D2FF)) {
             int[] delta = {0, 0, 1};
@@ -51,8 +59,8 @@ public final class Layers extends ShapeCanvas {
             }
         };
         
-        BrickWall brickwall = new BrickWall(0, treecenter - 10, 0, 350, 30, 300, 20, 5, Color.WHITE, new Color(230, 118, 70));
-        BrickWall brickwall2 = new BrickWall(brickwall.right, Greeting.Main.getWidth(), brickwall.rightTop, brickwall.rightBottom, 10, 325, 20, 6, brickwall.outline, brickwall.fill);
+        brickwall = new BrickWall(0, treecenter - 10, 0, 350, 30, 300, 20, 5, Color.WHITE, new Color(230, 118, 70));
+        brickwall2 = new BrickWall(brickwall.right, Greeting.Main.getWidth(), brickwall.rightTop, brickwall.rightBottom, 10, 325, 20, 6, brickwall.outline, brickwall.fill);
         // Brick b = new Brick("")
         // addShape(background);
         addShape(brickwall);
@@ -60,12 +68,49 @@ public final class Layers extends ShapeCanvas {
     }
     
     void addTree() {
-        Oval base = new Oval(treecenter, 306, 140, 60, Color.WHITE, new Color(200, 50, 50));
-        Rectangle trunk = new Rectangle(treecenter, base.y - 30, 40, 50, Color.BLACK, Color.ORANGE);
-        base.x -= base.width / 2;
-        trunk.x -= trunk.width / 2;
-        addShape(base);
-        addShape(trunk);
+        addShape (new Tree(treecenter));
+    }
+    
+    void addSnowball() {
+        Timer timer = new Timer(50, new SnowballRandomizer());
+        timer.start();
+    }
+    
+    class SnowballRandomizer implements ActionListener {
+        final int[] colorChanger = {0, 1, 2, 10}; 
+
+        int randomInt(int start, int end) {
+            int r = (int) (Math.random() * (end - start)) + start;
+            return r;
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            try {
+                Snowball snowball = new Snowball(randomInt(0, Greeting.Main.getWidth()), null, new Color(randomInt(200, 255), randomInt(200, 255), randomInt(200, 255), 250), colorChanger) {
+                    
+                    int targetY = -1;
+                    
+                    @Override
+                    protected void fall() {
+                        if (targetY == -1) {
+                            Line lower = null;
+                            if (x <= brickwall.right) 
+                                lower = brickwall.getLine(brickwall.rows);
+                            else
+                                lower = brickwall2.getLine(brickwall.rows);
+                            targetY = randomInt((int) Math.ceil(lower.yValue(x)), Greeting.Main.getHeight());
+                        }
+                        if (y <= targetY) {
+                            y += FALL_PIXELS_PER_FRAME;
+                        }
+                    }
+                };
+                addShape(snowball);
+            } catch (Exception ex) {
+                Logger.getLogger(Layers.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
     
 }

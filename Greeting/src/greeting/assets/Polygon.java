@@ -79,6 +79,10 @@ public class Polygon implements Shape {
         polygon.addPoint(x, y);
     }
     
+    public void add(Point p) {
+        add(p.x, p.y);
+    }
+    
     public void translate(int x, int y) {
         for (int i = 0; i < size(); ++i)
             set(i, getX(i) + x, getY(i) + y);

@@ -1,6 +1,9 @@
 package greeting.assets;
 
+import greeting.*;
 import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +14,6 @@ public class Light extends Circle {
 
     public Light(int x, int y, int diameter) {
         super(x, y, diameter);
-        // this.addColor(fill);
     }
     
     public Light(int x, int y, int diameter, Color outline, Color fill) {
@@ -28,6 +30,14 @@ public class Light extends Circle {
     
     public void addColor(Color color) {
         colors.add(color);
+    }
+    
+    public static double GLOW_ALPHA = 0.5;
+    public static double GLOW_SIZE = 1.1;
+    
+    @Override
+    public void draw(Graphics g) {
+        super.draw(g);
     }
     
     @Override
