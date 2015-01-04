@@ -1,9 +1,14 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ *  CS 21b Midterm Project Greeting (c) 2015
+ *  by Rico Tiongson
+ *  Submitted to Prof. John Boaz Lee on January 4, 2015
  */
 package greeting.assets;
+
+/**
+ *
+ * @author Rico Tiongson
+ */
 
 import greeting.*;
 import java.awt.Color;
@@ -11,10 +16,6 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author Rico
- */
 public final class Tree implements Shape {
         
     List<Shape> shapes = new ArrayList<>();

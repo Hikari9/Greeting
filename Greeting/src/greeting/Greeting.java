@@ -1,19 +1,19 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ *  CS 21b Midterm Project Greeting (c) 2015
+ *  by Rico Tiongson
+ *  Submitted to Prof. John Boaz Lee on January 4, 2015
  */
 package greeting;
 
+/**
+ *
+ * @author Rico Tiongson
+ */
 import greeting.assets.ShapeCanvas;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
-/**
- *
- * @author Rico
- */
 public class Greeting extends JFrame {
     public static Greeting Main = null;
     public int FPS;

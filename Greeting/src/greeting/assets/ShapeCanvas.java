@@ -1,9 +1,17 @@
+/*
+ *  CS 21b Midterm Project Greeting (c) 2015
+ *  by Rico Tiongson
+ *  Submitted to Prof. John Boaz Lee on January 4, 2015
+ */
 package greeting.assets;
 
+/**
+ *
+ * @author Rico Tiongson
+ */
 import java.awt.Canvas;
 import java.awt.Graphics;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import javax.swing.JComponent;
 
