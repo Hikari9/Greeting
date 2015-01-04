@@ -3,13 +3,12 @@
  *  by Rico Tiongson
  *  Submitted to Prof. John Boaz Lee on January 4, 2015
  */
-package greeting.assets;
+
 
 /**
  *
  * @author Rico Tiongson
  */
-import greeting.Greeting;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
@@ -86,7 +85,7 @@ public class BrickWall implements Shape {
         return bricks[row][col] = b;
     }
     
-    public Lighting randomLighting() {
+    public final Lighting randomLighting() {
         Lighting L = new Lighting(Greeting.Main.FPS);
         Light light = Light.BASIC;
         for (int i = 1; i < rows; ++i) {

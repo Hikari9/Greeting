@@ -3,13 +3,12 @@
  *  by Rico Tiongson
  *  Submitted to Prof. John Boaz Lee on January 4, 2015
  */
-package greeting.assets;
+
 
 /**
  *
  * @author Rico Tiongson
  */
-import greeting.Greeting;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
@@ -161,7 +160,7 @@ public class Snowman implements Shape {
     public Polygon getHatBase() {
         try {
             if (originalHatBase == null)
-                originalHatBase = Polygon.readFromFile("greeting/assets/SantaHatBaseRaw.txt");
+                originalHatBase = Polygon.readFromFile("SantaHatBaseRaw.txt");
             Polygon p = new Polygon(originalHatBase);
             p.outline = outline;
             p.fill = Color.WHITE;
@@ -190,7 +189,7 @@ public class Snowman implements Shape {
     public Polygon getHatBody() {
         try {
             if (originalHatBody == null)
-                originalHatBody = Polygon.readFromFile("greeting/assets/SantaHatBodyRaw.txt");
+                originalHatBody = Polygon.readFromFile("SantaHatBodyRaw.txt");
             Polygon p = new Polygon(originalHatBody);
             p.outline = outline;
             p.fill = Color.RED;

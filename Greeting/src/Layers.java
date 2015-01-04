@@ -3,14 +3,12 @@
  *  by Rico Tiongson
  *  Submitted to Prof. John Boaz Lee on January 4, 2015
  */
-package greeting;
+
 
 /**
  *
  * @author Rico Tiongson
  */
-import greeting.assets.*;
-import greeting.assets.Snowman;
 import java.awt.Color;
 import java.awt.Point;
 import java.awt.event.ActionEvent;

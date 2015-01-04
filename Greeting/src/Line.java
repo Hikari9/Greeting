@@ -3,7 +3,7 @@
  *  by Rico Tiongson
  *  Submitted to Prof. John Boaz Lee on January 4, 2015
  */
-package greeting.assets;
+
 
 /**
  *

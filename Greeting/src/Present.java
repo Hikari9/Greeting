@@ -3,7 +3,7 @@
  *  by Rico Tiongson
  *  Submitted to Prof. John Boaz Lee on January 4, 2015
  */
-package greeting.assets;
+
 
 /**
  *
@@ -66,7 +66,7 @@ public class Present extends Square {
                 jx = x;
                 jy = y;
                 try{
-                    dx = (x >= greeting.Greeting.Main.getMousePosition().x ? -1 : 1);
+                    dx = (x >= Greeting.Main.getMousePosition().x ? -1 : 1);
                 }
                 catch (Exception ex) {
                     dx = 0;
